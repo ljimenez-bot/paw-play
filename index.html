@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="paw & play: accesorios para mascotas diseñados con impresión 3D.">
+  <title>paw &amp; play | Ideas innovadoras para patitas felices</title>
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <style>
+    /* Colores principales de la identidad de paw & play */
+    :root {
+      --color-principal: #69B5AF;
+      --color-secundario: #EF8634;
+      --color-acento: #EEBD61;
+      --color-fondo: #F7F3EA;
+      --color-texto: #000000;
+      --color-blanco: #FFFFFF;
+      --ancho-maximo: 1120px;
+    }
+
+    /* Configuración general */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      font-family: Arial, Verdana, sans-serif;
+      color: var(--color-texto);
+      background: var(--color-fondo);
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .contenedor {
+      width: min(92%, var(--ancho-maximo));
+      margin: 0 auto;
+    }
+
+    .seccion {
+      padding: 88px 0;
+    }
+
+    .titulo-seccion {
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      text-align: center;
+    }
+
+    .subtitulo-seccion {
+      max-width: 680px;
+      margin: 0 auto 42px;
+      text-align: center;
+      color: #333333;
+    }
+
+    /* Encabezado fijo y navegación */
+    .encabezado {
+      position: fixed;
+      z-index: 1000;
+      inset: 0 0 auto;
+      background: var(--color-fondo);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    .barra-navegacion {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .marca-encabezado {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .marca-encabezado img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    .enlaces-navegacion {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .enlaces-navegacion a {
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .enlaces-navegacion a:hover,
+    .enlaces-navegacion a:focus {
+      color: #176D68;
+    }
+
+    .boton-menu {
+      display: none;
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 12px;
+      background: var(--color-principal);
+      color: var(--color-texto);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* Sección de inicio */
+    .inicio {
+      min-height: 690px;
+      padding: 150px 0 90px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 85% 25%, rgba(238, 189, 97, 0.32), transparent 25%),
+        radial-gradient(circle at 12% 85%, rgba(105, 181, 175, 0.25), transparent 28%),
+        var(--color-fondo);
+    }
+
+    .contenido-inicio {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .logo-inicio {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      margin: 0 auto 20px;
+    }
+
+    .inicio h1 {
+      margin-bottom: 10px;
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    .eslogan {
+      margin-bottom: 18px;
+      color: #176D68;
+      font-size: clamp(1.15rem, 3vw, 1.65rem);
+      font-weight: 700;
+    }
+
+    .texto-inicio {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-size: 1.08rem;
+    }
+
+    /* Botones reutilizables */
+    .boton {
+      display: inline-block;
+      padding: 13px 25px;
+      border: 2px solid var(--color-secundario);
+      border-radius: 999px;
+      background: var(--color-secundario);
+      color: #000000;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .boton:hover,
+    .boton:focus {
+      transform: translateY(-2px);
+      background: var(--color-acento);
+      border-color: var(--color-acento);
+    }
+
+    /* Sección sobre la empresa */
+    .sobre {
+      background: var(--color-blanco);
+    }
+
+    .sobre-introduccion {
+      max-width: 850px;
+      margin: 0 auto 34px;
+      text-align: center;
+      font-size: 1.08rem;
+    }
+
+    .datos-empresa {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+
+    .dato {
+      padding: 23px;
+      border-radius: 16px;
+      background: var(--color-fondo);
+      border-left: 5px solid var(--color-principal);
+    }
+
+    .dato h3 {
+      margin-bottom: 7px;
+      color: #176D68;
+      font-size: 1.1rem;
+    }
+
+    .equipo {
+      padding: 26px;
+      border-radius: 16px;
+      background: #FBE8D8;
+    }
+
+    .equipo h3 {
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 1.35rem;
+    }
+
+    .lista-equipo {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 25px;
+      list-style: none;
+    }
+
+    .lista-equipo li {
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Catálogo de productos */
+    .catalogo {
+      background: var(--color-fondo);
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .tarjeta-producto {
+      overflow: hidden;
+      border-radius: 18px;
+      background: var(--color-blanco);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tarjeta-producto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .carrusel-producto {
+      position: relative;
+      background: #E8E3D9;
+    }
+
+    .foto-producto {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      background: #E8E3D9;
+    }
+
+    .control-carrusel {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(247, 243, 234, 0.94);
+      color: #000000;
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    }
+
+    .control-carrusel:hover,
+    .control-carrusel:focus {
+      background: var(--color-acento);
+    }
+
+    .control-anterior {
+      left: 12px;
+    }
+
+    .control-siguiente {
+      right: 12px;
+    }
+
+    .indicadores-carrusel {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .indicador-carrusel {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      background: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .indicador-carrusel.activo {
+      background: var(--color-secundario);
+    }
+
+    .informacion-producto {
+      padding: 24px;
+    }
+
+    .informacion-producto h3 {
+      margin-bottom: 9px;
+      font-size: 1.45rem;
+    }
+
+    .informacion-producto p {
+      margin-bottom: 17px;
+    }
+
+    .precio {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--color-acento);
+      font-weight: 800;
+    }
+
+    /* Sección de contacto y formulario */
+    .contacto {
+      background: var(--color-principal);
+    }
+
+    .contacto .subtitulo-seccion {
+      color: #102D2B;
+    }
+
+    .contenido-contacto {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .datos-contacto,
+    .formulario {
+      padding: 28px;
+      border-radius: 16px;
+      background: var(--color-fondo);
+    }
+
+    .datos-contacto h3,
+    .formulario h3 {
+      margin-bottom: 14px;
+      font-size: 1.35rem;
+    }
+
+    .datos-contacto p {
+      margin-bottom: 12px;
+    }
+
+    .formulario label {
+      display: block;
+      margin: 13px 0 5px;
+      font-weight: 700;
+    }
+
+    .formulario input,
+    .formulario textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #777777;
+      border-radius: 8px;
+      background: #FFFFFF;
+      color: #000000;
+      font: inherit;
+    }
+
+    .formulario textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .formulario button {
+      margin-top: 17px;
+      font: inherit;
+    }
+
+    .mensaje-formulario {
+      min-height: 24px;
+      margin-top: 12px;
+      font-weight: 700;
+    }
+
+    /* Pie de página */
+    .pie-pagina {
+      padding: 22px 0;
+      background: #172F2D;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    /* Ajustes para celulares y tabletas */
+    @media (max-width: 760px) {
+      html {
+        scroll-padding-top: 74px;
+      }
+
+      .barra-navegacion {
+        min-height: 68px;
+      }
+
+      .marca-encabezado img {
+        width: 45px;
+        height: 45px;
+      }
+
+      .boton-menu {
+        display: inline-block;
+      }
+
+      .enlaces-navegacion {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 4%;
+        background: var(--color-fondo);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+
+      .enlaces-navegacion.abierto {
+        display: flex;
+      }
+
+      .enlaces-navegacion a {
+        display: block;
+        padding: 13px 8px;
+      }
+
+      .inicio {
+        min-height: 620px;
+        padding: 125px 0 70px;
+      }
+
+      .seccion {
+        padding: 68px 0;
+      }
+
+      .datos-empresa,
+      .productos,
+      .contenido-contacto {
+        grid-template-columns: 1fr;
+      }
+
+      .lista-equipo {
+        grid-template-columns: 1fr;
+      }
+
+      .foto-producto {
+        height: 280px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .inicio h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .logo-inicio {
+        width: 125px;
+        height: 125px;
+      }
+
+      .informacion-producto,
+      .datos-contacto,
+      .formulario {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Encabezado fijo con navegación -->
+  <header class="encabezado">
+    <nav class="barra-navegacion contenedor" aria-label="Navegación principal">
+      <a class="marca-encabezado" href="#inicio" aria-label="paw & play, ir al inicio">
+        <img src="logo.png" alt="Logo de paw & play">
+        <span>paw &amp; play</span>
+      </a>
+
+      <button class="boton-menu" id="botonMenu" type="button"
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="enlacesNavegacion">
+        ☰
+      </button>
+
+      <ul class="enlaces-navegacion" id="enlacesNavegacion">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre">Sobre la empresa</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Sección 1: Inicio -->
+    <section class="inicio" id="inicio">
+      <div class="contenido-inicio contenedor">
+        <img class="logo-inicio" src="logo.png" alt="Logo de paw & play">
+        <h1>paw &amp; play</h1>
+        <p class="eslogan">Ideas innovadoras para patitas felices</p>
+        <p class="texto-inicio">
+          Accesorios para mascotas creados con impresión 3D, combinando
+          creatividad, personalización y funcionalidad.
+        </p>
+        <a class="boton" href="#catalogo">Conoce nuestros productos</a>
+      </div>
+    </section>
+
+    <!-- Sección 2: Información de la empresa -->
+    <section class="sobre seccion" id="sobre">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Sobre la empresa</h2>
+        <p class="subtitulo-seccion">
+          Conoce quiénes somos, qué hacemos y cómo trabajamos.
+        </p>
+
+        <p class="sobre-introduccion">
+          Somos <strong>paw &amp; play</strong>, una empresa estudiantil que utiliza
+          la impresión 3D para crear accesorios útiles, creativos y personalizados
+          que facilitan el cuidado y el entretenimiento de las mascotas.
+        </p>
+
+        <div class="datos-empresa">
+          <article class="dato">
+            <h3>Eje temático</h3>
+            <p>Impresión 3D.</p>
+          </article>
+
+          <article class="dato">
+            <h3>Enfoque</h3>
+            <p>Diseño y creación de accesorios personalizados para mascotas.</p>
+          </article>
+
+          <article class="dato">
+            <h3>Cliente objetivo</h3>
+            <p>
+              Dueños de mascotas de todas las edades que buscan accesorios
+              personalizados, creativos y funcionales.
+            </p>
+          </article>
+
+          <article class="dato">
+            <h3>Propuesta de valor</h3>
+            <p>
+              Creamos productos funcionales, innovadores y adaptables, como
+              comederos, juguetes y accesorios, ofreciendo opciones diferentes
+              a las que normalmente se encuentran en el mercado.
+            </p>
+          </article>
+        </div>
+
+        <div class="equipo">
+          <h3>Integrantes y roles</h3>
+          <ul class="lista-equipo">
+            <li><strong>Líder:</strong> Lucía</li>
+            <li><strong>Diseño:</strong> Lucía</li>
+            <li><strong>Fabricación:</strong> Dylan</li>
+            <li><strong>Vocería comercial:</strong> Dylan y Lucía</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: Catálogo de productos -->
+    <section class="catalogo seccion" id="catalogo">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Nuestro catálogo</h2>
+        <p class="subtitulo-seccion">
+          Conoce algunos de los productos de paw &amp; play.
+        </p>
+
+        <div class="productos">
+          <article class="tarjeta-producto">
+            <div class="carrusel-producto" data-carrusel aria-label="Fotografías de Name & Style">
+              <img class="foto-producto" src="imagenes/producto1.jpg"
+                   alt="Collar para mascota Name & Style" loading="lazy">
+              <button class="control-carrusel control-anterior" type="button"
+                      aria-label="Fotografía anterior">‹</button>
+              <button class="control-carrusel control-siguiente" type="button"
+                      aria-label="Fotografía siguiente">›</button>
+              <div class="indicadores-carrusel">
+                <button class="indicador-carrusel activo" type="button"
+                        aria-label="Ver fotografía 1"></button>
+                <button class="indicador-carrusel" type="button"
+                        aria-label="Ver fotografía 2"></button>
+              </div>
+            </div>
+            <div class="informacion-producto">
+              <h3>Name &amp; Style</h3>
+              <p>
+                Collares para mascotas con diseños coloridos y nombres impresos
+                en 3D, ideales para darles un estilo único y especial.
+              </p>
+              <span class="precio">Precio: 6,500</span>
+            </div>
+          </article>
+
+          <article class="tarjeta-producto">
+            <div class="carrusel-producto" data-carrusel aria-label="Fotografías de My happy bowl">
+              <img class="foto-producto" src="imagenes/producto2.jpg"
+                   alt="Comedero para mascota My happy bowl" loading="lazy">
+              <button class="control-carrusel control-anterior" type="button"
+                      aria-label="Fotografía anterior">‹</button>
+              <button class="control-carrusel control-siguiente" type="button"
+                      aria-label="Fotografía siguiente">›</button>
+              <div class="indicadores-carrusel">
+                <button class="indicador-carrusel activo" type="button"
+                        aria-label="Ver fotografía 1"></button>
+                <button class="indicador-carrusel" type="button"
+                        aria-label="Ver fotografía 2"></button>
+              </div>
+            </div>
+            <div class="informacion-producto">
+              <h3>My happy bowl</h3>
+              <p>
+                Comederos para mascotas impresos en 3D, personalizables con el
+                nombre de cada mascota y disponibles en diferentes tamaños y colores.
+              </p>
+              <span class="precio">Precio: 8,500</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 4: Contacto y formulario -->
+    <section class="contacto seccion" id="contacto">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Contacto</h2>
+        <p class="subtitulo-seccion">
+          ¿Quieres conocer más sobre paw &amp; play? Puedes encontrarnos en Instagram.
+        </p>
+
+        <div class="contenido-contacto">
+          <div class="datos-contacto">
+            <h3>Redes sociales</h3>
+            <p><strong>Instagram:</strong> @paw&amp;play</p>
+            <p>
+              Gracias por tu interés en nuestra empresa y en nuestros accesorios
+              para mascotas.
+            </p>
+          </div>
+
+          <form class="formulario" id="formularioContacto">
+            <h3>Envíanos un mensaje</h3>
+
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" autocomplete="email" required>
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+
+            <button class="boton" type="submit">Enviar mensaje</button>
+            <p class="mensaje-formulario" id="respuestaFormulario" role="status"
+               aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="pie-pagina">
+    <div class="contenedor">
+      <p>paw &amp; play | Feria ROBOTEC - San Diego Bilingual High School</p>
+    </div>
+  </footer>
+
+  <script>
+    // Carruseles de fotografías de los productos
+    document.querySelectorAll("[data-carrusel]").forEach((carrusel) => {
+      const imagen = carrusel.querySelector(".foto-producto");
+      const botonAnterior = carrusel.querySelector(".control-anterior");
+      const botonSiguiente = carrusel.querySelector(".control-siguiente");
+      const indicadores = Array.from(carrusel.querySelectorAll(".indicador-carrusel"));
+      const imagenes = [
+        imagen.getAttribute("src"),
+        imagen.getAttribute("src").replace(".jpg", ".2.jpg")
+      ];
+      const textosAlternativos = [
+        imagen.getAttribute("alt"),
+        imagen.getAttribute("alt") + " (segunda fotografía)"
+      ];
+      let indiceActual = 0;
+
+      function mostrarImagen(indice) {
+        indiceActual = (indice + imagenes.length) % imagenes.length;
+        imagen.src = imagenes[indiceActual];
+        imagen.alt = textosAlternativos[indiceActual];
+
+        indicadores.forEach((indicador, indice) => {
+          indicador.classList.toggle("activo", indice === indiceActual);
+          indicador.setAttribute("aria-pressed", indice === indiceActual);
+        });
+      }
+
+      botonAnterior.addEventListener("click", () => mostrarImagen(indiceActual - 1));
+      botonSiguiente.addEventListener("click", () => mostrarImagen(indiceActual + 1));
+
+      indicadores.forEach((indicador, indice) => {
+        indicador.addEventListener("click", () => mostrarImagen(indice));
+      });
+    });
+
+    // Menú desplegable para celulares
+    const botonMenu = document.getElementById("botonMenu");
+    const enlacesNavegacion = document.getElementById("enlacesNavegacion");
+
+    botonMenu.addEventListener("click", () => {
+      const estaAbierto = enlacesNavegacion.classList.toggle("abierto");
+      botonMenu.setAttribute("aria-expanded", estaAbierto);
+      botonMenu.setAttribute("aria-label", estaAbierto ? "Cerrar menú" : "Abrir menú");
+      botonMenu.textContent = estaAbierto ? "✕" : "☰";
+    });
+
+    // Cierra el menú al seleccionar una sección
+    enlacesNavegacion.querySelectorAll("a").forEach((enlace) => {
+      enlace.addEventListener("click", () => {
+        enlacesNavegacion.classList.remove("abierto");
+        botonMenu.setAttribute("aria-expanded", "false");
+        botonMenu.setAttribute("aria-label", "Abrir menú");
+        botonMenu.textContent = "☰";
+      });
+    });
+
+    // Validación básica del formulario: no envía datos a un servidor
+    const formulario = document.getElementById("formularioContacto");
+    const respuestaFormulario = document.getElementById("respuestaFormulario");
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+
+      if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return;
+      }
+
+      respuestaFormulario.textContent =
+        "¡Gracias! Este formulario es una demostración y todavía no envía mensajes.";
+      formulario.reset();
+    });
+  </script>
+</body>
+</html>
